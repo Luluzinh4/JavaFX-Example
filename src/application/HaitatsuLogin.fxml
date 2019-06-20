@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <GridPane layoutX="200.0" layoutY="155.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="278.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="322.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #252525;">
+               <children>
+                  <ImageView fitHeight="223.0" fitWidth="208.0" layoutX="35.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/Haitatsu%20System%20-%20Logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #CCC;" GridPane.columnIndex="1">
+               <children>
+                  <Text fill="#565656" layoutX="105.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                     <font>
+                        <Font size="46.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="userHaitatsu" layoutX="22.0" layoutY="140.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #BBB;" />
+                  <PasswordField fx:id="pwdUserHaitatsu" layoutX="22.0" layoutY="216.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #BBB;" />
+                  <Text fill="#454545" layoutX="22.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário" />
+                  <Text fill="#454545" layoutX="24.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
+                  <Button fx:id="btnEntrar" layoutX="105.0" layoutY="282.0" mnemonicParsing="false" onAction="#entrarHaitatsu" onKeyPressed="#entrarHaitatsu" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #565656;" text="Entrar" textFill="#dddddd" />
+                  <Text fx:id="close" layoutX="308.0" layoutY="18.0" onMouseClicked="#closeHaitatsu" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

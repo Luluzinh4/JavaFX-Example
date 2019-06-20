@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CCC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClientesController">
+   <children>
+      <Button fx:id="btnCadCli" alignment="CENTER" layoutX="60.0" layoutY="135.0" mnemonicParsing="false" onAction="#initCadCliente" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Cadastrar Cliente" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="77.0" fitWidth="112.0" layoutX="464.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="67.0" layoutY="35.0" text="Clientes" textFill="#565656">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnUpdCli" alignment="CENTER" layoutX="316.0" layoutY="135.0" mnemonicParsing="false" onAction="#initUpdCliente" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Atualizar Cliente" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVerCli" alignment="CENTER" layoutX="60.0" layoutY="233.0" mnemonicParsing="false" onAction="#visuCliente" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Visualizar Cliente" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExcCli" alignment="CENTER" layoutX="316.0" layoutY="233.0" mnemonicParsing="false" onAction="#initExcCliente" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Excluir Cliente" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVoltarCli" layoutX="225.0" layoutY="322.0" mnemonicParsing="false" onAction="#voltarHaitatsu" prefHeight="47.0" prefWidth="150.0" style="-fx-background-color: #565656;" text="Voltar" textFill="#dddddd">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

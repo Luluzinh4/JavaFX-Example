@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProdutosController">
+   <children>
+      <Button fx:id="btnCadProd" alignment="CENTER" layoutX="60.0" layoutY="138.0" mnemonicParsing="false" onAction="#initCadProduto" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Cadastrar Produto" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="77.0" fitWidth="112.0" layoutX="468.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="60.0" layoutY="28.0" prefHeight="54.0" prefWidth="150.0" text="Produtos" textFill="#565656">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnUpdProd" alignment="CENTER" layoutX="316.0" layoutY="138.0" mnemonicParsing="false" onAction="#initUpdProduto" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Atualizar Produto" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVerProd" alignment="CENTER" layoutX="60.0" layoutY="236.0" mnemonicParsing="false" onAction="#visuProduto" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Visualizar Produto" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExcProd" alignment="CENTER" layoutX="316.0" layoutY="236.0" mnemonicParsing="false" onAction="#initExcProduto" prefHeight="54.0" prefWidth="225.0" style="-fx-background-color: #565656;" text="Excluir Produto" textFill="#dddddd">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVoltarProd" layoutX="225.0" layoutY="324.0" mnemonicParsing="false" onAction="#voltarHaitatsu" prefHeight="47.0" prefWidth="150.0" style="-fx-background-color: #565656;" text="Voltar" textFill="#dddddd">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
