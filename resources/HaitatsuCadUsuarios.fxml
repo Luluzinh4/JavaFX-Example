@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CadUsuariosController">
    <children>
       <Text fill="#565656" layoutX="39.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Novo Usuário">
@@ -46,7 +45,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="nomeUsuario" layoutX="188.0" layoutY="226.0" prefHeight="25.0" prefWidth="168.0" />
+      <TextField fx:id="loginUsuario" layoutX="188.0" layoutY="226.0" prefHeight="25.0" prefWidth="168.0" />
       <Label layoutX="376.0" layoutY="225.0" text="Senha" textFill="#565656">
          <font>
             <Font size="17.0" />

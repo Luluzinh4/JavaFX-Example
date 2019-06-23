@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +18,9 @@ public class ExcUsuariosController {
 
     @FXML
     private TextField cpfUsuario;
+    
+    @FXML
+    private TextField loginUsuario;
 
     @FXML
     private Button btnExcCancelar;
@@ -31,21 +36,44 @@ public class ExcUsuariosController {
 
     @FXML
     void excluirUsuario(ActionEvent event) {
-    	resultConfirm.setText("Usuário Excluído");
-    	limparTela();
-    	codUsuario.clear();
+//    	resultConfirm.setText("Usuário Excluído");
+//    	limparTela();
+//    	codUsuario.clear();
+    	
+    	String codigoUser = codUsuario.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	if(cnx.deletar(4, codigoUser)) {
+    		resultConfirm.setText("Usuário Excluído");
+    		limparTela();
+    		codUsuario.clear();
+    	} else {
+    		resultConfirm.setText("Usuário Inexistente");
+    	}
     }
 
     @FXML
     void pesquisarUsuario(ActionEvent event) {
-    	String codigo = codUsuario.getText();
+    	limparTela();
+    	resultConfirm.clear();
+    	String codigoUser = codUsuario.getText();
     	
-    	if(codigo.equals("123")) {
-    		nomeUsuario.setText("Teste");
-    	} else {
-    		limparTela();
-    		codUsuario.clear();
-    		resultConfirm.setText("Código Inválido");
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
+    	try {
+    		ArrayList<String> resultado = cnx.selecionar(4, codigoUser);
+    		
+    		if(!resultado.isEmpty()) {
+    			nomeUsuario.setText(resultado.get(0));
+    			cpfUsuario.setText(resultado.get(1));
+    			loginUsuario.setText(resultado.get(2));
+    			//senhaUsuario.setText(resultado.get(3));
+    		} else {
+    			resultConfirm.setText("Código Inválido");
+    			codUsuario.clear();
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
     	}
     }
 
@@ -63,7 +91,7 @@ public class ExcUsuariosController {
     void limparTela() {
     	nomeUsuario.clear();
     	cpfUsuario.clear();
-    	nomeUsuario.clear();
+    	loginUsuario.clear();
     }
 
 }

@@ -100,7 +100,25 @@ public class ConexaoSQL {
 			result = true;
 			break;
 		case 4:
-			result = true;
+			sql = "INSERT INTO Usuario VALUES (?,?,?,?,?)";
+			
+			try(Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)) {
+				//stmt = cnx.prepareStatement(sql);
+				stmt.setInt(1, (int) array.get(0));
+				stmt.setString(2, (String) array.get(1));
+				stmt.setString(3, (String) array.get(2));
+				stmt.setString(4, (String) array.get(3));
+				stmt.setString(5, (String) array.get(4));
+
+				int rows = stmt.executeUpdate();
+				cnx.close();
+				System.out.println("Inserção realizada com sucesso. " + rows + " linha(s) afetada(s).");
+				result = true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			//result = true;
 			break;
 		default:
 			result = false;
@@ -178,10 +196,17 @@ public class ConexaoSQL {
 			break;
 		case 4:
 			sql = "SELECT * FROM Usuario WHERE cod_usuario = ?";
-			try {
-				stmt = connection.prepareStatement(sql);
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)) {
+				//stmt = connection.prepareStatement(sql);
 				stmt.setString(1, cod);
 				resultado = stmt.executeQuery();
+				while(resultado.next()) {
+					resultDados.add(resultado.getString("nome"));
+					resultDados.add(resultado.getString("cpf"));
+					resultDados.add(resultado.getString("login"));
+					resultDados.add(resultado.getString("senha"));
+				}
 				System.out.println("Consulta realizada com sucesso");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -253,6 +278,21 @@ public class ConexaoSQL {
 			result = true;
 			break;
 		case 4:
+			sql = "UPDATE Usuario SET nome = ?, cpf = ?, login = ?, senha = ? WHERE cod_usuario = ?";
+			
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)){
+				stmt.setString(1, (String) array.get(0));
+				stmt.setString(2, (String) array.get(1));
+				stmt.setString(3, (String) array.get(2));
+				stmt.setString(4, (String) array.get(3));
+				stmt.setInt(5, Integer.parseInt(cod));
+				
+				int rows = stmt.executeUpdate();
+				System.out.println("Atualização realizada com sucesso. " + rows + " linha(s) afetada(s).");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			result = true;
 			break;
 		default:
@@ -271,7 +311,7 @@ public class ConexaoSQL {
 		switch (num) {
 		case 1:
 			sql = "DELETE FROM Cliente WHERE cod_cliente = ?";
-			try(Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
 					PreparedStatement stmt = cnx.prepareStatement(sql)) {
 				stmt.setString(1, cod);
 				int rows = stmt.executeUpdate();
@@ -283,7 +323,7 @@ public class ConexaoSQL {
 			break;
 		case 2:
 			sql = "DELETE FROM Produto WHERE cod_produto = ?";
-			try(Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
 					PreparedStatement stmt = cnx.prepareStatement(sql)) {
 				//stmt = connection.prepareStatement(sql);
 				stmt.setString(1, cod);
@@ -308,8 +348,9 @@ public class ConexaoSQL {
 			break;
 		case 4:
 			sql = "DELETE FROM Usuario WHERE cod_usuario = ?";
-			try {
-				stmt = connection.prepareStatement(sql);
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)) {
+				//stmt = connection.prepareStatement(sql);
 				stmt.setString(1, cod);
 				int rows = stmt.executeUpdate();
 				System.out.println("Consulta realizada com sucesso. " + rows + " linhas afetada(s).");
@@ -405,6 +446,32 @@ public class ConexaoSQL {
 		}
 		
 		return resultado;
+	}
+	
+	//Método para login
+	public boolean realizarLogin(String user, String senhaUser){
+		boolean login = false;
+		ArrayList<String> resultado = new ArrayList<>();
+		
+		sql = "SELECT login, senha FROM Usuario WHERE login = ? AND senha = ?";
+		try(Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+				PreparedStatement stmt = cnx.prepareStatement(sql)) {
+			stmt.setString(1, user);
+			stmt.setString(2, senhaUser);
+			ResultSet result = stmt.executeQuery();
+			while(result.next()) {
+				resultado.add(result.getString("login"));
+				resultado.add(result.getString("senha"));
+			}
+			
+			if(!resultado.isEmpty()) {
+				login = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return login;
 	}
 
 }
