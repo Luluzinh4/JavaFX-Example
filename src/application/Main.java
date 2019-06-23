@@ -20,7 +20,7 @@ public class Main extends Application{
 		// TODO Auto-generated method stub
 		try {
 			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("HaitatsuMain.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuMain.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Haitatsu System");

@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,19 +43,40 @@ public class ExcProdutosController {
 
     @FXML
     void excluirProduto(ActionEvent event) {
-    	//Faz conexão e exclui o produto
-    	resultConfirm.setText("O produto foi excluído");
-    	limpar();
+    	String codigoProd = codProd.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	if(cnx.deletar(2, codigoProd)) {
+    		resultConfirm.setText("Produto Excluído");
+    		limpar();
+    		codProd.clear();
+    	} else {
+    		resultConfirm.setText("Produto Inexistente");
+    	}
     }
 
     @FXML
     void procurarProduto(ActionEvent event) {
+    	limpar();
     	resultPesquisa.clear();
-    	if(validarCodProduto()) {
-    		//Procura no banco de dados e seta os valores no campo
-    		nomeProd.setText("Teste");
-    	} else {
-    		resultPesquisa.setText("Código Inválido");
+    	String codigoProd = codProd.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
+    	try {
+    		ArrayList<String> resultado = cnx.selecionar(2, codigoProd);
+    		
+    		if(!resultado.isEmpty()) {
+    			nomeProd.setText(resultado.get(0));
+    			descProd.setText(resultado.get(1));
+    			vlUnitProd.setText(resultado.get(2));
+    			qtdProd.setText(resultado.get(3));
+    		} else {
+    			resultPesquisa.setText("Código Inválido");
+    			codProd.clear();
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
     	}
     }
 
@@ -68,25 +91,17 @@ public class ExcProdutosController {
 		}
     }
     
-    boolean validarCodProduto() {
-    	//Verifica se existe o código dentro do banco de dados
-    	String codigo = codProd.getText();
-    	if (codigo != null && codigo != "") {
-    		return true;
-    	}
-    	return false;
-    }
-    
     void fecharTela() {
     	ExcProdutos.getStage().close();
     }
     
     void limpar() {
-		codProd.clear();
+		//codProd.clear();
 		nomeProd.clear();
 		descProd.clear();
 		vlUnitProd.clear();
 		qtdProd.clear();
+		resultConfirm.clear();
 	}
 
 }

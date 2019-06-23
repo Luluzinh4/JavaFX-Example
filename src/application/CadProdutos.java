@@ -19,7 +19,7 @@ public class CadProdutos extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("HaitatsuCadProdutos.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuCadProdutos.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Haitatsu System");
 			primaryStage.setScene(scene);

@@ -1,11 +1,10 @@
 package application;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -37,7 +36,7 @@ public class CadClientesController {
     private TextField cnpjCliente;
 
     @FXML
-    private ComboBox<?> bancoCliente;
+    private TextField bancoCliente;
 
     @FXML
     private TextField agCliente;
@@ -70,16 +69,47 @@ public class CadClientesController {
     void criarCodCliente(MouseEvent event) {
     	resultConfirm.clear();
     	//Verificar a contagem de clientes no banco de dados.
-    	Random random = new Random();
-    	Integer codigo = random.nextInt();
+//    	Random random = new Random();
+//    	Integer codigo = random.nextInt();
+//    	codCliente.setText(codigo.toString());
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	Integer codigo = cnx.countQtd(1) + 1;
     	codCliente.setText(codigo.toString());
     }
 
     @FXML
     void criarNovoCliente(ActionEvent event) {
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
     	if(validarDados()) {
-    		//Inserção no banco de dados
-    		resultConfirm.setText("Cliente Criado!");
+    		//Acrescentar mais um na variável auxiliar
+    		//AuxiliaryClass.setQtdClientes(AuxiliaryClass.getQtdClientes() + 1);
+    		
+    		//Carregando dados no array
+    		ArrayList<Object> dados = new ArrayList<>();
+    		dados.add(Integer.parseInt(codCliente.getText()));
+    		dados.add(nomeCliente.getText());
+    		dados.add(cpfCliente.getText());
+    		dados.add(rgCliente.getText());
+    		dados.add(cnpjCliente.getText());
+    		dados.add(bancoCliente.getText());
+    		dados.add(agCliente.getText());
+    		dados.add(contaCliente.getText());
+    		dados.add(endCliente.getText());
+    		dados.add(compCliente.getText());
+    		dados.add(bairroCliente.getText());
+    		dados.add(cidadeCliente.getText());
+    		dados.add(cepCliente.getText());
+    		dados.add(telCliente.getText());
+    		dados.add(emailCliente.getText());
+    		
+    		if(cnx.criar(1, dados)) {
+    			resultConfirm.setText("Cliente Criado!");
+    		} else {
+    			//AuxiliaryClass.setQtdClientes(AuxiliaryClass.getQtdClientes() - 1);
+    			resultConfirm.setText("Cliente não criado.");
+    		}
     	} else {
     		resultConfirm.setText("Dados Inválidos!");
     	}
@@ -102,6 +132,11 @@ public class CadClientesController {
     }
     
     boolean validarDados() {
+    	String codigoCli = codCliente.getText();
+    	
+    	if(codigoCli.isEmpty()) {
+    		return false;
+    	}
 		return true;
 	}
 	
@@ -111,6 +146,7 @@ public class CadClientesController {
 		cpfCliente.clear();
 		rgCliente.clear();
 		cnpjCliente.clear();
+		bancoCliente.clear();
 		agCliente.clear();
 		contaCliente.clear();
 		endCliente.clear();

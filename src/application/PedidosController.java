@@ -24,22 +24,30 @@ public class PedidosController {
 
     @FXML
     void initCadPedido(ActionEvent event) {
-
+    	CadPedidos cadPed = new CadPedidos();
+    	fecharTela();
+    	cadPed.start(new Stage());
     }
 
     @FXML
     void initExcPedido(ActionEvent event) {
-
+    	ExcPedidos excPed = new ExcPedidos();
+    	fecharTela();
+    	excPed.start(new Stage());
     }
 
     @FXML
     void initUpdPedido(ActionEvent event) {
-
+    	UpdPedidos updPed = new UpdPedidos();
+    	fecharTela();
+    	updPed.start(new Stage());
     }
 
     @FXML
     void visuPedido(ActionEvent event) {
-
+    	VerPedidos verPed = new VerPedidos();
+    	fecharTela();
+    	verPed.start(new Stage());
     }
 
     @FXML

@@ -14,7 +14,7 @@ private static Stage stageProdutos;
 	public void start(Stage primaryStage) {
 		try {
 			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("HaitatsuProdutos.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuProdutos.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Haitatsu System");

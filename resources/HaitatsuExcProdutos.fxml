@@ -10,14 +10,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ExcProdutosController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CCC;">
          <children>
             <ImageView fitHeight="77.0" fitWidth="112.0" layoutX="461.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
+                  <Image url="@../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
                </image>
             </ImageView>
             <Text fill="#565656" fontSmoothingType="LCD" layoutX="37.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Excluir Produto">
@@ -36,13 +35,13 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="nomeProd" editable="false" layoutX="194.0" layoutY="135.0" prefHeight="25.0" prefWidth="257.0" />
+            <TextField fx:id="nomeProd" disable="true" editable="false" layoutX="194.0" layoutY="135.0" prefHeight="25.0" prefWidth="257.0" />
             <Label layoutX="37.0" layoutY="183.0" text="Descrição" textFill="#565656">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextArea fx:id="descProd" editable="false" layoutX="123.0" layoutY="183.0" prefHeight="111.0" prefWidth="197.0" />
+            <TextArea fx:id="descProd" disable="true" editable="false" layoutX="123.0" layoutY="183.0" prefHeight="111.0" prefWidth="197.0" />
             <Label layoutX="343.0" layoutY="183.0" text="Valor Unitário" textFill="#565656">
                <font>
                   <Font size="17.0" />
@@ -53,8 +52,8 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="vlUnitProd" editable="false" layoutX="451.0" layoutY="184.0" prefHeight="25.0" prefWidth="137.0" />
-            <TextField fx:id="qtdProd" editable="false" layoutX="440.0" layoutY="244.0" />
+            <TextField fx:id="vlUnitProd" disable="true" editable="false" layoutX="451.0" layoutY="184.0" prefHeight="25.0" prefWidth="137.0" />
+            <TextField fx:id="qtdProd" disable="true" editable="false" layoutX="440.0" layoutY="244.0" />
             <Button fx:id="btnExcProduto" layoutX="414.0" layoutY="312.0" mnemonicParsing="false" onAction="#excluirProduto" prefHeight="61.0" prefWidth="124.0" style="-fx-background-color: #565656;" text="Excluir" textFill="#dddddd">
                <font>
                   <Font size="20.0" />

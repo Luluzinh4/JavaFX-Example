@@ -31,17 +31,23 @@ public class ClientesController {
 
     @FXML
     void initExcCliente(ActionEvent event) {
-
+    	ExcClientes excCli = new ExcClientes();
+    	fecharTela();
+    	excCli.start(new Stage());
     }
 
     @FXML
     void initUpdCliente(ActionEvent event) {
-
+    	UpdClientes updCli = new UpdClientes();
+    	fecharTela();
+    	updCli.start(new Stage());
     }
 
     @FXML
     void visuCliente(ActionEvent event) {
-
+    	VerClientes verCli = new VerClientes();
+    	fecharTela();
+    	verCli.start(new Stage());
     }
 
     @FXML

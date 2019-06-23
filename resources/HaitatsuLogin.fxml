@@ -27,7 +27,7 @@
                <children>
                   <ImageView fitHeight="223.0" fitWidth="208.0" layoutX="35.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/Haitatsu%20System%20-%20Logo.png" />
+                        <Image url="@../img/Haitatsu%20System%20-%20Logo.png" />
                      </image>
                   </ImageView>
                </children>

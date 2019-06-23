@@ -7,19 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConfigController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccc;">
          <children>
-            <Button fx:id="btnCadUser" alignment="CENTER" layoutX="24.0" layoutY="154.0" mnemonicParsing="false" onAction="#initCadUsuario" prefHeight="93.0" prefWidth="260.0" style="-fx-background-color: #565656;" text="Cadastrar Usuário" textFill="#dddddd">
+            <Button fx:id="btnUsers" alignment="CENTER" layoutX="24.0" layoutY="154.0" mnemonicParsing="false" onAction="#verUsuarios" prefHeight="93.0" prefWidth="260.0" style="-fx-background-color: #565656;" text="Usuários" textFill="#dddddd">
                <font>
                   <Font size="27.0" />
                </font>
             </Button>
             <ImageView fitHeight="77.0" fitWidth="112.0" layoutX="468.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
+                  <Image url="@../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
                </image>
             </ImageView>
             <Label layoutX="60.0" layoutY="28.0" prefHeight="54.0" prefWidth="245.0" text="Configurações" textFill="#565656">

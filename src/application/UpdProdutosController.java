@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,23 +43,49 @@ public class UpdProdutosController {
 
     @FXML
     void updateProduto(ActionEvent event) {
-    	if(validarDados()) {
-    		//Inserção no banco de dados
+    	String codigoProd = codProd.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
+    	ArrayList<Object> dadosUpd = new ArrayList<>();
+    	
+    	dadosUpd.add(nomeProd.getText());
+    	dadosUpd.add(descProd.getText());
+    	dadosUpd.add(vlUnitProd.getText());
+    	dadosUpd.add(qtdProd.getText());
+    	
+    	if(cnx.atualizar(2, codigoProd, dadosUpd)) {
     		resultConfirm.setText("Produto Atualizado!");
+    		limpar();
+    		codProd.clear();
     	} else {
     		resultConfirm.setText("Produto Inválido!");
     	}
-    	limpar();
+    	//limpar();
     }
 
     @FXML
     void procurarProduto(ActionEvent event) {
+    	limpar();
     	resultPesquisa.clear();
-    	if(validarCodProduto()) {
-    		//Procura no banco de dados e seta os valores no campo
-    		nomeProd.setText("Teste");
-    	} else {
-    		resultPesquisa.setText("Código Inválido");
+    	String codigoProd = codProd.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
+    	try {
+    		ArrayList<String> resultado = cnx.selecionar(2, codigoProd);
+    		
+    		if(!resultado.isEmpty()) {
+    			nomeProd.setText(resultado.get(0));
+    			descProd.setText(resultado.get(1));
+    			vlUnitProd.setText(resultado.get(2));
+    			qtdProd.setText(resultado.get(3));
+    		} else {
+    			resultPesquisa.setText("Código Inválido");
+    			codProd.clear();
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
     	}
     }
 
@@ -72,25 +100,12 @@ public class UpdProdutosController {
 		}
     }
     
-    boolean validarCodProduto() {
-    	//Verifica se existe o código dentro do banco de dados
-    	String codigo = codProd.getText();
-    	if (codigo != null && codigo != "") {
-    		return true;
-    	}
-    	return false;
-    }
-    
-    boolean validarDados() {
-		return false;
-	}
-    
     void fecharTela() {
     	UpdProdutos.getStage().close();
     }
     
     void limpar() {
-		codProd.clear();
+		//codProd.clear();
 		nomeProd.clear();
 		descProd.clear();
 		vlUnitProd.clear();

@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 public class ConfigController {
 
-    @FXML
-    private Button btnCadUser;
+	@FXML
+    private Button btnUsers;
 
     @FXML
     private Button btnVoltarConfig;
@@ -17,8 +17,10 @@ public class ConfigController {
     private Button btnLogout;
 
     @FXML
-    void initCadUsuario(ActionEvent event) {
-
+    void verUsuarios(ActionEvent event) {
+    	Usuarios user = new Usuarios();
+    	closeTela();
+    	user.start(new Stage());
     }
 
     @FXML

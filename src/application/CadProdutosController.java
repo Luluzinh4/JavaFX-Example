@@ -1,6 +1,6 @@
 package application;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,16 +40,34 @@ public class CadProdutosController {
     void criarCodPedido(MouseEvent event) {
     	resultConfirm.clear();
     	//Verificar a contagem de produtos no banco de dados.
-    	Random rand = new Random();
-    	Integer numero = rand.nextInt();
-    	codProd.setText(numero.toString());
+//    	Random rand = new Random();
+//    	Integer numero = rand.nextInt();
+//    	codProd.setText(numero.toString());
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	Integer codigo = cnx.countQtd(2) + 1;
+    	codProd.setText(codigo.toString());
     }
 
     @FXML
     void criarNovoProduto(ActionEvent event) {
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
     	if(validarDados()) {
     		//Inserção no banco de dados
-    		resultConfirm.setText("Produto Criado!");
+    		//Carregando array com dados
+    		ArrayList<Object> dados = new ArrayList<>();
+    		dados.add(Integer.parseInt(codProd.getText()));
+    		dados.add(nomeProd.getText());
+    		dados.add(descProd.getText());
+    		dados.add(Float.parseFloat(vlUnitProd.getText()));
+    		dados.add(Integer.parseInt(qtdProd.getText()));
+    		
+    		if(cnx.criar(2, dados)) {
+    			resultConfirm.setText("Produto Criado!");
+    		} else {
+    			resultConfirm.setText("Produto Não Criado!");
+    		}
     	} else {
     		resultConfirm.setText("Dados Inválidos!");
     	}
@@ -72,6 +90,11 @@ public class CadProdutosController {
 	}
 	
 	boolean validarDados() {
+		String codigoProd = codProd.getText();
+		
+		if(codigoProd.isEmpty()) {
+			return false;
+		}
 		return true;
 	}
 	

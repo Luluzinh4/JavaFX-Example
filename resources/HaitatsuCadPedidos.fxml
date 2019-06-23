@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CadPedidosController">
+   <children>
+      <Text fill="#565656" fontSmoothingType="LCD" layoutX="36.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Novo Pedido">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="77.0" fitWidth="112.0" layoutX="463.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="36.0" layoutY="74.0" text="Código" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="codPedido" disable="true" editable="false" layoutX="100.0" layoutY="75.0" prefHeight="25.0" prefWidth="125.0" />
+      <Label layoutX="242.0" layoutY="74.0" text="Cliente" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="clientePedido" layoutX="300.0" layoutY="75.0" prefWidth="150.0" promptText="Selecione o cliente" />
+      <Label layoutX="33.0" layoutY="125.0" text="Produto" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="produtoPedido" layoutX="100.0" layoutY="126.0" prefHeight="25.0" prefWidth="204.0" promptText="Selecione o produto" />
+      <Label layoutX="320.0" layoutY="126.0" text="Quantidade" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="qtdPedido" layoutX="420.0" layoutY="127.0" prefHeight="25.0" prefWidth="61.0" />
+      <Label layoutX="185.0" layoutY="174.0" text="Valor Total" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="vlTotalPedido" disable="true" layoutX="274.0" layoutY="175.0" />
+      <Label layoutX="33.0" layoutY="216.0" text="Forma de Pagamento" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="FPPedido" layoutX="206.0" layoutY="217.0" prefHeight="25.0" prefWidth="114.0" promptText="Selecione" />
+      <Label layoutX="33.0" layoutY="258.0" text="Status" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="statusPedido" layoutX="88.0" layoutY="259.0" prefHeight="25.0" prefWidth="234.0" promptText="Selecione" />
+      <Button fx:id="btnCadCancelar" layoutX="71.0" layoutY="310.0" mnemonicParsing="false" onAction="#voltarPedidos" prefHeight="61.0" prefWidth="124.0" style="-fx-background-color: #565656;" text="Cancelar" textFill="#dddddd">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCadPedido" layoutX="414.0" layoutY="310.0" mnemonicParsing="false" onAction="#criarNovoPedido" prefHeight="61.0" prefWidth="124.0" style="-fx-background-color: #565656;" text="Confirmar" textFill="#dddddd">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCadCalcular" layoutX="498.0" layoutY="125.0" mnemonicParsing="false" onAction="#calcularVlPedido" prefHeight="30.0" prefWidth="72.0" style="-fx-background-color: #565656;" text="Calcular" textFill="#cccccc">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

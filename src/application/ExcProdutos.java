@@ -19,7 +19,7 @@ public class ExcProdutos extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("HaitatsuExcProdutos.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuExcProdutos.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Haitatsu System");
 			primaryStage.setScene(scene);

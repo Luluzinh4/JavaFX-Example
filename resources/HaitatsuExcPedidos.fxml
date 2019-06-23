@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ExcPedidosController">
+   <children>
+      <Text fill="#565656" fontSmoothingType="LCD" layoutX="36.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancelar Pedido">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="77.0" fitWidth="112.0" layoutX="463.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Haitatsu%20System%20-%20Logo%20Min%20-%20Copia.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="36.0" layoutY="74.0" text="Código" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="codPedido" layoutX="100.0" layoutY="75.0" onMouseClicked="#limparCampo" prefHeight="25.0" prefWidth="125.0" />
+      <Label layoutX="33.0" layoutY="114.0" text="Cliente" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="clientePedido" disable="true" editable="false" layoutX="94.0" layoutY="115.0" />
+      <Label layoutX="294.0" layoutY="114.0" text="Produto" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="produtoPedido" disable="true" editable="false" layoutX="364.0" layoutY="116.0" prefHeight="25.0" prefWidth="171.0" />
+      <Label layoutX="265.0" layoutY="157.0" text="Quantidade" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="qtdPedido" disable="true" editable="false" layoutX="357.0" layoutY="158.0" prefHeight="25.0" prefWidth="52.0" />
+      <Label layoutX="423.0" layoutY="155.0" text="Valor Total" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="vlTotalPedido" disable="true" layoutX="512.0" layoutY="156.0" prefHeight="25.0" prefWidth="61.0" />
+      <Label layoutX="320.0" layoutY="195.0" text="Forma de Pagamento" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fpPedido" disable="true" editable="false" layoutX="484.0" layoutY="194.0" prefHeight="25.0" prefWidth="89.0" />
+      <Label layoutX="33.0" layoutY="194.0" text="Último Status" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ultStatus" disable="true" editable="false" layoutX="137.0" layoutY="195.0" prefHeight="25.0" prefWidth="171.0" />
+      <Button fx:id="btnExcCancelar" layoutX="71.0" layoutY="310.0" mnemonicParsing="false" onAction="#voltarPedidos" prefHeight="61.0" prefWidth="124.0" style="-fx-background-color: #565656;" text="Voltar" textFill="#dddddd">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExcPedido" layoutX="414.0" layoutY="310.0" mnemonicParsing="false" onAction="#excluirPedido" prefHeight="61.0" prefWidth="124.0" style="-fx-background-color: #565656;" text="Excluir" textFill="#dddddd">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExcPesquisar" layoutX="238.0" layoutY="73.0" mnemonicParsing="false" onAction="#pesquisarPedido" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #565656;" text="Pesquisar" textFill="#cccccc">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="109.0" layoutY="251.0" text="Motivo do Cancelamento" textFill="#565656">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="motivoExcPedido" layoutX="309.0" layoutY="252.0" prefHeight="25.0" prefWidth="201.0" promptText="Selecione um motivo" />
+      <TextField fx:id="resultConfirm" disable="true" editable="false" layoutX="226.0" layoutY="328.0" style="-fx-background-color: #ccc;" />
+   </children>
+</AnchorPane>

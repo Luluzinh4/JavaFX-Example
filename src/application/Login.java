@@ -15,7 +15,7 @@ public class Login extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("HaitatsuLogin.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuLogin.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Haitatsu System");

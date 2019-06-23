@@ -1,41 +1,42 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Clientes extends Application{
+public class ExcClientes extends Application {
 	
-	private static Stage stageClientes;
+	private static Stage stageExcClientes;
 
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		try {
-			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuClientes.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuExcClientes.fxml"));
 			Scene scene = new Scene(root);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Haitatsu System");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			setStage(primaryStage);
-		} catch(Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
+		
 	}
 
 	public static Stage getStage() {
-		return stageClientes;
+		return stageExcClientes;
 	}
 
 	public static void setStage(Stage stage) {
-		Clientes.stageClientes = stage;
+		ExcClientes.stageExcClientes = stage;
 	}
 
 }

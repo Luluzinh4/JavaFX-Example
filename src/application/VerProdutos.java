@@ -20,7 +20,7 @@ public class VerProdutos extends Application{
 	public void start(Stage primaryStage) {
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("HaitatsuVerProdutos.fxml"));
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuVerProdutos.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
