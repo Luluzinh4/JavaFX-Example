@@ -1,5 +1,7 @@
 package application;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,7 +46,14 @@ public class ExcPedidosController {
     private TextField resultConfirm;
 
     @FXML
-    private ComboBox<?> motivoExcPedido;
+    private ComboBox<String> motivoExcPedido;
+    
+    @FXML
+    public void initialize() {
+    	ObservableList<String> itensMotivo = FXCollections.observableArrayList();
+		itensMotivo.addAll("Falta de Estoque", "Nova Solicitação", "Falta de Pagamento", "Cancelado pelo Cliente");
+		motivoExcPedido.setItems(itensMotivo);
+    }
 
     @FXML
     void excluirPedido(ActionEvent event) {

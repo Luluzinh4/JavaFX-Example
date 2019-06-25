@@ -158,6 +158,7 @@ public class ConexaoSQL {
 					resultDados.add(resultado.getString("email"));
 				}
 				System.out.println("Consulta realizada com sucesso");
+				cnx.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -179,6 +180,7 @@ public class ConexaoSQL {
 					resultDados.add(Integer.toString(resultado.getInt("qtd_produto")));
 				}
 				System.out.println("Consulta realizada com sucesso");
+				cnx.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -190,6 +192,7 @@ public class ConexaoSQL {
 				stmt.setString(1, cod);
 				resultado = stmt.executeQuery();
 				System.out.println("Consulta realizada com sucesso");
+				//cnx.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -208,6 +211,7 @@ public class ConexaoSQL {
 					resultDados.add(resultado.getString("senha"));
 				}
 				System.out.println("Consulta realizada com sucesso");
+				cnx.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -248,6 +252,7 @@ public class ConexaoSQL {
 				stmt.setInt(15, Integer.parseInt(cod));
 				
 				int rows = stmt.executeUpdate();
+				cnx.close();
 				System.out.println("Atualização realizada com sucesso. " + rows + " linha(s) afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -267,6 +272,7 @@ public class ConexaoSQL {
 				stmt.setInt(5, Integer.parseInt(cod));
 				
 				int rows = stmt.executeUpdate();
+				cnx.close();
 				System.out.println("Atualização realizada com sucesso. " + rows + " linha(s) afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -289,6 +295,7 @@ public class ConexaoSQL {
 				stmt.setInt(5, Integer.parseInt(cod));
 				
 				int rows = stmt.executeUpdate();
+				cnx.close();
 				System.out.println("Atualização realizada com sucesso. " + rows + " linha(s) afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -315,6 +322,7 @@ public class ConexaoSQL {
 					PreparedStatement stmt = cnx.prepareStatement(sql)) {
 				stmt.setString(1, cod);
 				int rows = stmt.executeUpdate();
+				cnx.close();
 				System.out.println("Consulta realizada com sucesso. " + rows + " linha(s) afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -328,6 +336,7 @@ public class ConexaoSQL {
 				//stmt = connection.prepareStatement(sql);
 				stmt.setString(1, cod);
 				int rows = stmt.executeUpdate();
+				cnx.close();
 				System.out.println("Consulta realizada com sucesso. " + rows + " linha(s) afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -340,6 +349,7 @@ public class ConexaoSQL {
 				stmt = connection.prepareStatement(sql);
 				stmt.setString(1, cod);
 				int rows = stmt.executeUpdate();
+				//cnx.close();
 				System.out.println("Consulta realizada com sucesso. " + rows + " linha(s) afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -353,6 +363,7 @@ public class ConexaoSQL {
 				//stmt = connection.prepareStatement(sql);
 				stmt.setString(1, cod);
 				int rows = stmt.executeUpdate();
+				cnx.close();
 				System.out.println("Consulta realizada com sucesso. " + rows + " linhas afetada(s).");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -384,6 +395,7 @@ public class ConexaoSQL {
 				while(result.next()) {
 					resultado = result.getInt("cod_cliente");
 				}
+				cnx.close();
 				//int rows = stmt.executeUpdate();
 				//System.out.println("Consulta realizada com sucesso. " + rows + "linha(s) afetada(s).");
 			} catch (SQLException e) {
@@ -401,6 +413,7 @@ public class ConexaoSQL {
 				while(result.next()) {
 					resultado = result.getInt(1);
 				}
+				cnx.close();
 				//int rows = stmt.executeUpdate();
 				//System.out.println("Consulta realizada com sucesso. " + rows + "linha(s) afetada(s).");
 			} catch (SQLException e) {
@@ -418,6 +431,7 @@ public class ConexaoSQL {
 				while(result.next()) {
 					resultado = result.getInt(1);
 				}
+				cnx.close();
 				//int rows = stmt.executeUpdate();
 				//System.out.println("Consulta realizada com sucesso. " + rows + "linha(s) afetada(s).");
 			} catch (SQLException e) {
@@ -435,6 +449,7 @@ public class ConexaoSQL {
 				while(result.next()) {
 					resultado = result.getInt(1);
 				}
+				cnx.close();
 				//int rows = stmt.executeUpdate();
 				//System.out.println("Consulta realizada com sucesso. " + rows + "linha(s) afetada(s).");
 			} catch (SQLException e) {
@@ -467,11 +482,124 @@ public class ConexaoSQL {
 			if(!resultado.isEmpty()) {
 				login = true;
 			}
+			
+			cnx.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return login;
+	}
+	
+	public ArrayList<String> carregarCliProd(int num){
+		ArrayList<String> resultado = new ArrayList<>();
+		Integer codigo;
+		
+		//sql = "SELECT nome FROM Cliente WHERE cod_cliente < ?";
+		
+		if(num == 1) {
+			codigo = countQtd(1) + 1;
+			sql = "SELECT nome FROM Cliente WHERE cod_cliente < ?";
+			
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)){
+				stmt.setString(1, codigo.toString());
+				ResultSet result = stmt.executeQuery();
+				
+				while(result.next()) {
+					resultado.add(result.getString("nome"));
+				}
+				
+				cnx.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			codigo = countQtd(2) + 1;
+			sql = "SELECT nome_produto FROM Produto WHERE cod_produto < ?";
+			
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)){
+				stmt.setString(1, codigo.toString());
+				ResultSet result = stmt.executeQuery();
+				
+				while(result.next()) {
+					resultado.add(result.getString("nome_produto"));
+				}
+				
+				cnx.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultado;
+	}
+	
+	public String transformar(int num, String nome) {
+		String resultado = null;
+		
+		if(num == 1) {
+			sql = "SELECT cod_cliente FROM Cliente WHERE nome = ?";
+			
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)){
+				stmt.setString(1, nome);
+				ResultSet result = stmt.executeQuery();
+				
+				while(result.next()) {
+					//resultado.add(result.getInt("cod_cliente"));
+					Integer codigo = result.getInt("cod_cliente");
+					resultado = codigo.toString();
+				}
+				
+				cnx.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			sql = "SELECT cod_produto FROM Produto WHERE nome_produto = ?";
+			
+			try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+					PreparedStatement stmt = cnx.prepareStatement(sql)){
+				stmt.setString(1, nome);
+				ResultSet result = stmt.executeQuery();
+				
+				while(result.next()) {
+					//resultado.add(result.getString("nome_produto"));
+					Integer codigo = result.getInt("cod_produto");
+					resultado = codigo.toString();
+				}
+				
+				cnx.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultado;
+	}
+	
+	public Float consultarValorProduto(String nome) {
+		Float resultado = null;
+		
+		sql = "SELECT preco FROM Produto WHERE nome_produto = ?";
+		try (Connection cnx = DriverManager.getConnection("jdbc:sqlite:bancoTeste.db");
+				PreparedStatement stmt = cnx.prepareStatement(sql)){
+			stmt.setString(1, nome);
+			ResultSet result = stmt.executeQuery();
+			
+			while(result.next()) {
+				//Float codigo = result.getFloat("preco");
+				resultado = result.getFloat("preco");
+			}
+			
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 
 }
