@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,22 +51,34 @@ public class VerPedidosController {
     }
 
     @FXML
-    void pesquisarPedido(ActionEvent event) {
+    void pesquisarPedido(ActionEvent event) {	
+    	limparTela();
+    	resultConfirm.clear();
     	String codigo = codPedido.getText();
-    	//Integer valor = Integer.parseInt(codigo);
     	
-    	if(codigo.equals("123")) {
-    		clientePedido.setText("Luiza Perez");
-    		produtoPedido.setText("Corrente de Prata");
-    		qtdPedido.setText("25");
-    		vlTotalPedido.setText("R$ 560,00");
-    		fpPedido.setText("Transferência");
-    		ultStatusPedido.setText("Aguardando Aprovação");
-    	} else {
-    		limparTela();
-    		codPedido.clear();
-    		resultConfirm.setText("Código Inválido!");
-    	}
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
+    	try {
+    		//System.out.println(codigo);
+			ArrayList<String> resultado = cnx.selecionar(3, codigo);
+			
+			if(!resultado.isEmpty()) {
+				String cliente = cnx.reTransformar(1, resultado.get(0));
+				String produto = cnx.reTransformar(2, resultado.get(1));
+				
+				clientePedido.setText(cliente);
+				produtoPedido.setText(produto);
+				qtdPedido.setText(resultado.get(2));
+				vlTotalPedido.setText(resultado.get(3));
+				fpPedido.setText(resultado.get(4));
+				ultStatusPedido.setText(resultado.get(5));
+			} else {
+				resultConfirm.setText("Código Inválido");
+				codPedido.clear();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -79,14 +93,13 @@ public class VerPedidosController {
     }
 
     void limparTela() {
-    	codPedido.clear();
+    	//codPedido.clear();
     	clientePedido.clear();
     	produtoPedido.clear();
     	qtdPedido.clear();
     	vlTotalPedido.clear();
     	fpPedido.clear();
     	ultStatusPedido.clear();
-    	//motivoExcPedido.setId("0");
     }
     
 }

@@ -1,0 +1,45 @@
+CREATE TABLE Cliente (
+cod_cliente int PRIMARY KEY  not null,
+nome varchar(60) not NULL,
+cpf varchar(11),
+rg varchar(9),
+cnpj varchar(15),
+banco varchar(30),	
+agencia varchar(10) not NULL,
+conta varchar(15) not NULL,
+logradouro varchar(60) not NULL,
+complemento varchar (10),
+bairro varchar(20) not NULL,
+cidade varchar(20) not NULL,
+cep varchar(20) not NULL,
+telefone varchar(20) not NULL,
+email varchar(50)
+)
+
+CREATE TABLE Produto (
+cod_produto int PRIMARY KEY not null,
+nome_produto varchar(30) not null,
+descricao varchar(80),
+preco decimal not null,
+qtd_produto int
+)
+
+CREATE TABLE Usuario(
+cod_usuario int PRIMARY KEY  not null,
+nome varchar(60),
+cpf varchar(11),
+login varchar (20) not NULL,
+senha varchar(60) not NULL,
+)
+
+CREATE TABLE Pedido (
+cod_pedido int PRIMARY KEY NOT NULL,
+cod_cliente INT NOT NULL,
+cod_produto INT NOT NULL,
+qtd_produto INT NOT NULL,
+valorPedido decimal NOT NULL,
+fp_pedido varchar(20) NOT NULL,
+status varchar(30) NOT NULL,
+FOREIGN KEY (cod_cliente) REFERENCES Cliente(cod_cliente),
+FOREIGN KEY (cod_produto) REFERENCES Produto(cod_produto)
+)

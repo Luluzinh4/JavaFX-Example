@@ -77,8 +77,9 @@ public class CadPedidosController {
     	resultCalcular.clear();
     	//Necessidade de criação de consulta para pegar o valor do produto e multiplicar com a qtd
     	String produto = produtoPedido.getSelectionModel().getSelectedItem();
+    	//System.out.println(produto);
     	String qtdProd = qtdPedido.getText();
-    	if(!produto.isEmpty() && !qtdProd.isEmpty()) {
+    	if(!(produto == null) && !qtdProd.isEmpty()) {
     		ConexaoSQL cnx = new ConexaoSQL();
     		    		
     		Float valorProd = cnx.consultarValorProduto(produto);
@@ -90,14 +91,48 @@ public class CadPedidosController {
     		criarCodPedido();
     	} else {
     		//Criar campo para pedir a inserção dos dados
-    		resultCalcular.setText("Insira produto e quantidade");
+    		//resultCalcular.setText("Insira produto e quantidade");
+    		if(produto == null) {
+    			resultCalcular.setText("Insira um produto");
+    		} else {
+    			resultCalcular.setText("Insira a quantidade");
+    		}
     	}
     }
 
 	@FXML
     void criarNovoPedido(ActionEvent event) {
-		limparTela();
-		resultConfirm.setText("Pedido Concluído");
+//		limparTela();
+//		resultConfirm.setText("Pedido Concluído");
+		
+		ConexaoSQL cnx = new ConexaoSQL();
+		
+		String cliente = clientePedido.getSelectionModel().getSelectedItem();
+		String codigoCliente = cnx.transformar(1, cliente);
+		
+		String produto = produtoPedido.getSelectionModel().getSelectedItem();
+		String codigoProduto = cnx.transformar(2, produto);
+		
+		if(validarDados()) {
+			ArrayList<Object> dados = new ArrayList<>();
+			dados.add(Integer.parseInt(codPedido.getText()));
+			dados.add(Integer.parseInt(codigoCliente));
+			dados.add(Integer.parseInt(codigoProduto));
+			dados.add(Integer.parseInt(qtdPedido.getText()));
+			dados.add(Float.parseFloat(vlTotalPedido.getText()));
+			dados.add(FPPedido.getSelectionModel().getSelectedItem());
+			dados.add(statusPedido.getSelectionModel().getSelectedItem());
+			
+			if(cnx.criar(3, dados)) {
+				resultConfirm.setText("Pedido Criado");
+			} else {
+				resultConfirm.setText("Pedido não Criado");
+			}
+			limparTela();
+		} else {
+			resultConfirm.setText("Insira todos os dados");
+		}
+		//limparTela();
     }
 
     @FXML
@@ -115,10 +150,22 @@ public class CadPedidosController {
 //			codPedido.setText(valor.toString());
     		
     		ConexaoSQL cnx = new ConexaoSQL();
-    		Integer cod = cnx.countQtd(3);
+    		Integer cod = cnx.countQtd(3) + 1;
     		codPedido.setText(cod.toString());
     	}
 	}
+    
+    boolean validarDados() {
+    	String codigo = codPedido.getText();
+    	String cliente = clientePedido.getSelectionModel().getSelectedItem();
+    	String formaPag = FPPedido.getSelectionModel().getSelectedItem();
+    	String status = statusPedido.getSelectionModel().getSelectedItem();
+    	
+    	if(codigo.isEmpty() || cliente == null || formaPag == null || status == null) {
+    		return false;
+    	}    	
+    	return true;
+    }
 
     void fecharTela() {
     	CadPedidos.getStage().close();

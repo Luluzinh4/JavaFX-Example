@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,34 +59,73 @@ public class ExcPedidosController {
 
     @FXML
     void excluirPedido(ActionEvent event) {
-    	String codigo = codPedido.getText();
-    	//Integer valor = Integer.parseInt(codigo);
+//    	String codigo = codPedido.getText();
+//    	//Integer valor = Integer.parseInt(codigo);
+//    	
+//    	if(codigo.equals("123")) {
+//    		resultConfirm.setText("Pedido Cancelado");
+//	    	limparTela();
+//    	} else {
+//    		resultConfirm.setText("Comando Inválido");
+//    	}
     	
-    	if(codigo.equals("123")) {
+    	String codigo = codPedido.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	if(cnx.deletar(3, codigo)) {
     		resultConfirm.setText("Pedido Cancelado");
-	    	limparTela();
+    		limparTela();
+    		codPedido.clear();
     	} else {
-    		resultConfirm.setText("Comando Inválido");
+    		resultConfirm.setText("Pedido Inexistente");
     	}
     }
 
     @FXML
     void pesquisarPedido(ActionEvent event) {
-    	String codigo = codPedido.getText();
-    	//Integer valor = Integer.parseInt(codigo);
+//    	String codigo = codPedido.getText();
+//    	//Integer valor = Integer.parseInt(codigo);
+//    	
+//    	if(codigo.equals("123")) {
+//    		clientePedido.setText("Luiza Perez");
+//    		produtoPedido.setText("Corrente de Prata");
+//    		qtdPedido.setText("25");
+//    		vlTotalPedido.setText("R$ 560,00");
+//    		fpPedido.setText("Transferência");
+//    		ultStatus.setText("Aguardando Aprovação");
+//    	} else {
+//    		limparTela();
+//    		codPedido.clear();
+//    		resultConfirm.setText("Código Inválido!");
+//    	}
     	
-    	if(codigo.equals("123")) {
-    		clientePedido.setText("Luiza Perez");
-    		produtoPedido.setText("Corrente de Prata");
-    		qtdPedido.setText("25");
-    		vlTotalPedido.setText("R$ 560,00");
-    		fpPedido.setText("Transferência");
-    		ultStatus.setText("Aguardando Aprovação");
-    	} else {
-    		limparTela();
-    		codPedido.clear();
-    		resultConfirm.setText("Código Inválido!");
-    	}
+    	limparTela();
+    	resultConfirm.clear();
+    	String codigo = codPedido.getText();
+    	
+    	ConexaoSQL cnx = new ConexaoSQL();
+    	
+    	try {
+    		//System.out.println(codigo);
+			ArrayList<String> resultado = cnx.selecionar(3, codigo);
+			
+			if(!resultado.isEmpty()) {
+				String cliente = cnx.reTransformar(1, resultado.get(0));
+				String produto = cnx.reTransformar(2, resultado.get(1));
+				
+				clientePedido.setText(cliente);
+				produtoPedido.setText(produto);
+				qtdPedido.setText(resultado.get(2));
+				vlTotalPedido.setText(resultado.get(3));
+				fpPedido.setText(resultado.get(4));
+				ultStatus.setText(resultado.get(5));
+			} else {
+				resultConfirm.setText("Código Inválido");
+				codPedido.clear();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     @FXML
@@ -108,7 +149,7 @@ public class ExcPedidosController {
     }
     
     void limparTela() {
-    	codPedido.clear();
+    	//codPedido.clear();
     	clientePedido.clear();
     	produtoPedido.clear();
     	qtdPedido.clear();
