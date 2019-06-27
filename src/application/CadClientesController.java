@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 public class CadClientesController {
 
@@ -118,18 +121,28 @@ public class CadClientesController {
 
     @FXML
     void voltarClientes(ActionEvent event) {
-    	Clientes cli = new Clientes();
-    	fecharTela();
+//    	Clientes cli = new Clientes();
+//    	fecharTela();
+//    	try {
+//			cli.start(new Stage());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+    	
     	try {
-			cli.start(new Stage());
-		} catch (Exception e) {
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuClientes.fxml"));
+			Scene scene = new Scene(root);
+			App.getStage().setTitle("Haitatsu System");
+			App.getStage().setScene(scene);
+			App.getStage().show();
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
     }
     
-    void fecharTela() {
-    	CadClientes.getStage().close();
-    }
+//    void fecharTela() {
+//    	CadClientes.getStage().close();
+//    }
     
     boolean validarDados() {
     	String codigoCli = codCliente.getText();

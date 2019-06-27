@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 public class CadProdutosController {
 
@@ -76,18 +79,29 @@ public class CadProdutosController {
 
     @FXML
     void voltarProdutos(ActionEvent event) {
-    	Produtos prod = new Produtos();
-    	fecharTela();
+//    	Produtos prod = new Produtos();
+//    	fecharTela();
+//    	try {
+//			prod.start(new Stage());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+    	
     	try {
-			prod.start(new Stage());
-		} catch (Exception e) {
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuProdutos.fxml"));
+			Scene scene = new Scene(root);
+			App.getStage().setTitle("Haitatsu System");
+			App.getStage().setScene(scene);
+			App.getStage().show();
+			//setStage(primaryStage);
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
     }
 
-	void fecharTela() {
-		CadProdutos.getStage().close();	
-	}
+//	void fecharTela() {
+//		CadProdutos.getStage().close();	
+//	}
 	
 	boolean validarDados() {
 		String codigoProd = codProd.getText();

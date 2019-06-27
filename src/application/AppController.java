@@ -1,16 +1,21 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
-public class LoginController {
+public class AppController {
 	
 //	private String nome = "admin";
 //	private String senha = "Teste123";
@@ -36,13 +41,25 @@ public class LoginController {
     	String senhaUser = pwdUserHaitatsu.getText();
     	
     	if(validarLogin(nomeUser, senhaUser)) {
-    		Main main = new Main();
-			closeTela();
+//    		Main main = new Main();
+//			closeTela();
+//			try {
+//				main.start(new Stage());
+//			} catch (Exception e) {
+//				System.out.println(e.getMessage());
+//			}
+			
+			//Parent root;
 			try {
-				main.start(new Stage());
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuMain.fxml"));
+				Scene scene = new Scene(root);
+				App.getStage().setTitle("Haitatsu System");
+				App.getStage().setScene(scene);
+				App.getStage().show();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+			
     	} else {
     		Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro: Login Inválido");
@@ -94,8 +111,8 @@ public class LoginController {
     	System.exit(0);
     }
     
-    void closeTela() {
-    	Login.getStage().close();
-    }
+//    void closeTela() {
+//    	App.getStage().close();
+//    }
 
 }

@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 public class CadUsuariosController {
 
@@ -75,14 +78,25 @@ public class CadUsuariosController {
 
     @FXML
     void voltarUsuarios(ActionEvent event) {
-    	Usuarios user = new Usuarios();
-    	fecharTela();
-    	user.start(new Stage());
+//    	Usuarios user = new Usuarios();
+//    	fecharTela();
+//    	user.start(new Stage());
+    	
+    	try {
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuUsuarios.fxml"));
+			Scene scene = new Scene(root);
+			App.getStage().setTitle("Haitatsu System");
+			App.getStage().setScene(scene);
+			App.getStage().show();
+			//setStage(primaryStage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
-    void fecharTela() {
-    	CadUsuarios.getStage().close();
-    }
+//    void fecharTela() {
+//    	CadUsuarios.getStage().close();
+//    }
     
     boolean validarDados() {
     	String codigoUser = codUsuario.getText();

@@ -6,10 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 public class CadPedidosController {
 
@@ -137,9 +140,21 @@ public class CadPedidosController {
 
     @FXML
     void voltarPedidos(ActionEvent event) {
-    	Pedidos ped = new Pedidos();
-    	fecharTela();
-    	ped.start(new Stage());
+//    	Pedidos ped = new Pedidos();
+//    	fecharTela();
+//    	ped.start(new Stage());
+    	
+    	try {
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuPedidos.fxml"));
+			Scene scene = new Scene(root);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			App.getStage().setTitle("Haitatsu System");
+			App.getStage().setScene(scene);
+			App.getStage().show();
+			//setStage(primaryStage);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
     }
 
     void criarCodPedido() {
@@ -167,9 +182,9 @@ public class CadPedidosController {
     	return true;
     }
 
-    void fecharTela() {
-    	CadPedidos.getStage().close();
-    }
+//    void fecharTela() {
+//    	CadPedidos.getStage().close();
+//    }
     
     void limparTela() {
     	codPedido.clear();

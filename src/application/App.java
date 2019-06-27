@@ -1,24 +1,21 @@
 package application;
-
+	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+//import javafx.scene.layout.BorderPane;
 
-public class Clientes extends Application{
+public class App extends Application {
 	
-	private static Stage stageClientes;
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
+	private static Stage stageLogin;
+	
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		try {
 			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuClientes.fxml"));
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HaitatsuLogin.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Haitatsu System");
@@ -27,15 +24,18 @@ public class Clientes extends Application{
 			setStage(primaryStage);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}		
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
 	}
 
 	public static Stage getStage() {
-		return stageClientes;
+		return stageLogin;
 	}
 
 	public static void setStage(Stage stage) {
-		Clientes.stageClientes = stage;
+		App.stageLogin = stage;
 	}
-
 }
